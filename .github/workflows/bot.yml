@@ -1,4 +1,4 @@
-name: 24/7 Bot Runner
+name: Bot Runner
 
 on:
   schedule:

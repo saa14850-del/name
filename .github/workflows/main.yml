@@ -1,9 +1,9 @@
 name: Run Telegram Bot
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:   # ম্যানুয়ালি চালানোর জন্য
   schedule:
-    # প্রতি ৫ ঘন্টা রিস্টার্ট
+    # প্রতি ৫ ঘন্টা রিস্টার্ট (cron: UTC time)
     - cron: '0 */5 * * *'
 
 jobs:
@@ -26,12 +26,8 @@ jobs:
 
       - name: Kill previous bot (if any)
         run: |
-          pkill -f "python main.py" || echo "No previous process found"
+          pkill -f "python main.py" || echo "No previous bot process found"
 
       - name: Run Bot
         run: |
-          nohup python main.py > bot.log 2>&1 &
-          echo "Bot started successfully"
-
-      - name: Show last 20 log lines
-        run: tail -n 20 bot.log
+          python main.py
